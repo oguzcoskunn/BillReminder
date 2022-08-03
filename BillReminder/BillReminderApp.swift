@@ -15,6 +15,7 @@ struct BillReminderApp: App {
         WindowGroup {
             ContentView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                .environmentObject(GlobalVariables())
         }
     }
 }

@@ -7,15 +7,67 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6700C51A2897F3DD00969E3C /* TopMainBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6700C5192897F3DD00969E3C /* TopMainBarView.swift */; };
+		6700C51C2897F69700969E3C /* ReminderListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6700C51B2897F69700969E3C /* ReminderListView.swift */; };
+		6700C51E2897F7C800969E3C /* ReminderRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6700C51D2897F7C800969E3C /* ReminderRowView.swift */; };
+		6700C520289800BA00969E3C /* SideBarStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6700C51F289800BA00969E3C /* SideBarStackView.swift */; };
+		6700C5222898010800969E3C /* HamburgerMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6700C5212898010800969E3C /* HamburgerMenuView.swift */; };
+		6700C52E2899292300969E3C /* ReminderDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6700C52D2899292300969E3C /* ReminderDetailView.swift */; };
+		6700C530289929F000969E3C /* ReminderDetailRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6700C52F289929F000969E3C /* ReminderDetailRow.swift */; };
+		6700C536289965DD00969E3C /* EditReminderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6700C535289965DD00969E3C /* EditReminderView.swift */; };
+		6700C545289A742600969E3C /* SwipeActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6700C540289A742600969E3C /* SwipeActions.swift */; };
+		6700C546289A742600969E3C /* MeasureSizeModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6700C542289A742600969E3C /* MeasureSizeModifier.swift */; };
+		6700C547289A742600969E3C /* SwipeActionModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6700C543289A742600969E3C /* SwipeActionModifier.swift */; };
+		6700C548289A742600969E3C /* ValueChangedModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6700C544289A742600969E3C /* ValueChangedModifier.swift */; };
 		6736E6C428927BB30031E15D /* BillReminderApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6736E6C328927BB30031E15D /* BillReminderApp.swift */; };
 		6736E6C628927BB30031E15D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6736E6C528927BB30031E15D /* ContentView.swift */; };
 		6736E6C828927BB40031E15D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6736E6C728927BB40031E15D /* Assets.xcassets */; };
 		6736E6CB28927BB40031E15D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6736E6CA28927BB40031E15D /* Preview Assets.xcassets */; };
 		6736E6CD28927BB40031E15D /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6736E6CC28927BB40031E15D /* Persistence.swift */; };
 		6736E6D028927BB40031E15D /* BillReminder.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6736E6CE28927BB40031E15D /* BillReminder.xcdatamodeld */; };
+		6736E6D928927CF50031E15D /* AddReminderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6736E6D828927CF50031E15D /* AddReminderView.swift */; };
+		6736E6DB289286D00031E15D /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6736E6DA289286D00031E15D /* CustomTextField.swift */; };
+		6736E6DD289288ED0031E15D /* TextFieldRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6736E6DC289288ED0031E15D /* TextFieldRow.swift */; };
+		6736E6F328928B870031E15D /* Poppins-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6736E6E028928B870031E15D /* Poppins-ExtraLight.ttf */; };
+		6736E6F428928B870031E15D /* Poppins-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6736E6E128928B870031E15D /* Poppins-ThinItalic.ttf */; };
+		6736E6F528928B870031E15D /* Poppins-ExtraLightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6736E6E228928B870031E15D /* Poppins-ExtraLightItalic.ttf */; };
+		6736E6F628928B870031E15D /* Poppins-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6736E6E328928B870031E15D /* Poppins-BoldItalic.ttf */; };
+		6736E6F728928B870031E15D /* Poppins-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6736E6E428928B870031E15D /* Poppins-Light.ttf */; };
+		6736E6F828928B870031E15D /* Poppins-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6736E6E528928B870031E15D /* Poppins-Medium.ttf */; };
+		6736E6F928928B870031E15D /* Poppins-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6736E6E628928B870031E15D /* Poppins-SemiBoldItalic.ttf */; };
+		6736E6FA28928B870031E15D /* Poppins-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6736E6E728928B870031E15D /* Poppins-ExtraBoldItalic.ttf */; };
+		6736E6FB28928B870031E15D /* Poppins-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6736E6E828928B870031E15D /* Poppins-ExtraBold.ttf */; };
+		6736E6FC28928B870031E15D /* Poppins-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6736E6E928928B870031E15D /* Poppins-BlackItalic.ttf */; };
+		6736E6FD28928B870031E15D /* OFL.txt in Resources */ = {isa = PBXBuildFile; fileRef = 6736E6EA28928B870031E15D /* OFL.txt */; };
+		6736E6FE28928B870031E15D /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6736E6EB28928B870031E15D /* Poppins-Regular.ttf */; };
+		6736E6FF28928B870031E15D /* Poppins-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6736E6EC28928B870031E15D /* Poppins-LightItalic.ttf */; };
+		6736E70028928B870031E15D /* Poppins-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6736E6ED28928B870031E15D /* Poppins-Bold.ttf */; };
+		6736E70128928B870031E15D /* Poppins-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6736E6EE28928B870031E15D /* Poppins-Black.ttf */; };
+		6736E70228928B870031E15D /* Poppins-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6736E6EF28928B870031E15D /* Poppins-Thin.ttf */; };
+		6736E70328928B870031E15D /* Poppins-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6736E6F028928B870031E15D /* Poppins-SemiBold.ttf */; };
+		6736E70428928B870031E15D /* Poppins-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6736E6F128928B870031E15D /* Poppins-Italic.ttf */; };
+		6736E70528928B870031E15D /* Poppins-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6736E6F228928B870031E15D /* Poppins-MediumItalic.ttf */; };
+		6736E70E2892F5F60031E15D /* TopBackBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6736E70D2892F5F60031E15D /* TopBackBarView.swift */; };
+		6736E7102892F6950031E15D /* GlobalVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6736E70F2892F6950031E15D /* GlobalVariables.swift */; };
+		6736E7122892FA4A0031E15D /* DoubleSwitchButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6736E7112892FA4A0031E15D /* DoubleSwitchButton.swift */; };
+		67474775289423AB005F62E4 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67474774289423AB005F62E4 /* NotificationManager.swift */; };
+		6747477728942747005F62E4 /* InfoOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6747477628942747005F62E4 /* InfoOverlayView.swift */; };
+		67A12B5B2893C05700760409 /* MainButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A12B5A2893C05700760409 /* MainButtonView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6700C5192897F3DD00969E3C /* TopMainBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopMainBarView.swift; sourceTree = "<group>"; };
+		6700C51B2897F69700969E3C /* ReminderListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderListView.swift; sourceTree = "<group>"; };
+		6700C51D2897F7C800969E3C /* ReminderRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderRowView.swift; sourceTree = "<group>"; };
+		6700C51F289800BA00969E3C /* SideBarStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideBarStackView.swift; sourceTree = "<group>"; };
+		6700C5212898010800969E3C /* HamburgerMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HamburgerMenuView.swift; sourceTree = "<group>"; };
+		6700C52D2899292300969E3C /* ReminderDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderDetailView.swift; sourceTree = "<group>"; };
+		6700C52F289929F000969E3C /* ReminderDetailRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderDetailRow.swift; sourceTree = "<group>"; };
+		6700C535289965DD00969E3C /* EditReminderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditReminderView.swift; sourceTree = "<group>"; };
+		6700C540289A742600969E3C /* SwipeActions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipeActions.swift; sourceTree = "<group>"; };
+		6700C542289A742600969E3C /* MeasureSizeModifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeasureSizeModifier.swift; sourceTree = "<group>"; };
+		6700C543289A742600969E3C /* SwipeActionModifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipeActionModifier.swift; sourceTree = "<group>"; };
+		6700C544289A742600969E3C /* ValueChangedModifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValueChangedModifier.swift; sourceTree = "<group>"; };
 		6736E6C028927BB30031E15D /* BillReminder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BillReminder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6736E6C328927BB30031E15D /* BillReminderApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillReminderApp.swift; sourceTree = "<group>"; };
 		6736E6C528927BB30031E15D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -23,6 +75,35 @@
 		6736E6CA28927BB40031E15D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		6736E6CC28927BB40031E15D /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		6736E6CF28927BB40031E15D /* BillReminder.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BillReminder.xcdatamodel; sourceTree = "<group>"; };
+		6736E6D828927CF50031E15D /* AddReminderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddReminderView.swift; sourceTree = "<group>"; };
+		6736E6DA289286D00031E15D /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		6736E6DC289288ED0031E15D /* TextFieldRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldRow.swift; sourceTree = "<group>"; };
+		6736E6E028928B870031E15D /* Poppins-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ExtraLight.ttf"; sourceTree = "<group>"; };
+		6736E6E128928B870031E15D /* Poppins-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ThinItalic.ttf"; sourceTree = "<group>"; };
+		6736E6E228928B870031E15D /* Poppins-ExtraLightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ExtraLightItalic.ttf"; sourceTree = "<group>"; };
+		6736E6E328928B870031E15D /* Poppins-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-BoldItalic.ttf"; sourceTree = "<group>"; };
+		6736E6E428928B870031E15D /* Poppins-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Light.ttf"; sourceTree = "<group>"; };
+		6736E6E528928B870031E15D /* Poppins-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Medium.ttf"; sourceTree = "<group>"; };
+		6736E6E628928B870031E15D /* Poppins-SemiBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
+		6736E6E728928B870031E15D /* Poppins-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
+		6736E6E828928B870031E15D /* Poppins-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ExtraBold.ttf"; sourceTree = "<group>"; };
+		6736E6E928928B870031E15D /* Poppins-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-BlackItalic.ttf"; sourceTree = "<group>"; };
+		6736E6EA28928B870031E15D /* OFL.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = OFL.txt; sourceTree = "<group>"; };
+		6736E6EB28928B870031E15D /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Regular.ttf"; sourceTree = "<group>"; };
+		6736E6EC28928B870031E15D /* Poppins-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-LightItalic.ttf"; sourceTree = "<group>"; };
+		6736E6ED28928B870031E15D /* Poppins-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Bold.ttf"; sourceTree = "<group>"; };
+		6736E6EE28928B870031E15D /* Poppins-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Black.ttf"; sourceTree = "<group>"; };
+		6736E6EF28928B870031E15D /* Poppins-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Thin.ttf"; sourceTree = "<group>"; };
+		6736E6F028928B870031E15D /* Poppins-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-SemiBold.ttf"; sourceTree = "<group>"; };
+		6736E6F128928B870031E15D /* Poppins-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Italic.ttf"; sourceTree = "<group>"; };
+		6736E6F228928B870031E15D /* Poppins-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-MediumItalic.ttf"; sourceTree = "<group>"; };
+		6736E70B28928D0F0031E15D /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6736E70D2892F5F60031E15D /* TopBackBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopBackBarView.swift; sourceTree = "<group>"; };
+		6736E70F2892F6950031E15D /* GlobalVariables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalVariables.swift; sourceTree = "<group>"; };
+		6736E7112892FA4A0031E15D /* DoubleSwitchButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleSwitchButton.swift; sourceTree = "<group>"; };
+		67474774289423AB005F62E4 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
+		6747477628942747005F62E4 /* InfoOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoOverlayView.swift; sourceTree = "<group>"; };
+		67A12B5A2893C05700760409 /* MainButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainButtonView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,9 +117,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6700C53F289A742600969E3C /* SwipeActions */ = {
+			isa = PBXGroup;
+			children = (
+				6700C540289A742600969E3C /* SwipeActions.swift */,
+				6700C541289A742600969E3C /* ViewModifiers */,
+			);
+			path = SwipeActions;
+			sourceTree = "<group>";
+		};
+		6700C541289A742600969E3C /* ViewModifiers */ = {
+			isa = PBXGroup;
+			children = (
+				6700C542289A742600969E3C /* MeasureSizeModifier.swift */,
+				6700C543289A742600969E3C /* SwipeActionModifier.swift */,
+				6700C544289A742600969E3C /* ValueChangedModifier.swift */,
+			);
+			path = ViewModifiers;
+			sourceTree = "<group>";
+		};
 		6736E6B728927BB30031E15D = {
 			isa = PBXGroup;
 			children = (
+				6736E6DE28928B870031E15D /* Fonts */,
 				6736E6C228927BB30031E15D /* BillReminder */,
 				6736E6C128927BB30031E15D /* Products */,
 			);
@@ -55,9 +156,11 @@
 		6736E6C228927BB30031E15D /* BillReminder */ = {
 			isa = PBXGroup;
 			children = (
+				67A12B572893B42E00760409 /* Utils */,
+				67A12B562893B40A00760409 /* View */,
 				6736E6C328927BB30031E15D /* BillReminderApp.swift */,
-				6736E6C528927BB30031E15D /* ContentView.swift */,
 				6736E6C728927BB40031E15D /* Assets.xcassets */,
+				6736E70B28928D0F0031E15D /* Info.plist */,
 				6736E6CC28927BB40031E15D /* Persistence.swift */,
 				6736E6CE28927BB40031E15D /* BillReminder.xcdatamodeld */,
 				6736E6C928927BB40031E15D /* Preview Content */,
@@ -71,6 +174,81 @@
 				6736E6CA28927BB40031E15D /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		6736E6DE28928B870031E15D /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				6736E6DF28928B870031E15D /* Poppins */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		6736E6DF28928B870031E15D /* Poppins */ = {
+			isa = PBXGroup;
+			children = (
+				6736E6E028928B870031E15D /* Poppins-ExtraLight.ttf */,
+				6736E6E128928B870031E15D /* Poppins-ThinItalic.ttf */,
+				6736E6E228928B870031E15D /* Poppins-ExtraLightItalic.ttf */,
+				6736E6E328928B870031E15D /* Poppins-BoldItalic.ttf */,
+				6736E6E428928B870031E15D /* Poppins-Light.ttf */,
+				6736E6E528928B870031E15D /* Poppins-Medium.ttf */,
+				6736E6E628928B870031E15D /* Poppins-SemiBoldItalic.ttf */,
+				6736E6E728928B870031E15D /* Poppins-ExtraBoldItalic.ttf */,
+				6736E6E828928B870031E15D /* Poppins-ExtraBold.ttf */,
+				6736E6E928928B870031E15D /* Poppins-BlackItalic.ttf */,
+				6736E6EA28928B870031E15D /* OFL.txt */,
+				6736E6EB28928B870031E15D /* Poppins-Regular.ttf */,
+				6736E6EC28928B870031E15D /* Poppins-LightItalic.ttf */,
+				6736E6ED28928B870031E15D /* Poppins-Bold.ttf */,
+				6736E6EE28928B870031E15D /* Poppins-Black.ttf */,
+				6736E6EF28928B870031E15D /* Poppins-Thin.ttf */,
+				6736E6F028928B870031E15D /* Poppins-SemiBold.ttf */,
+				6736E6F128928B870031E15D /* Poppins-Italic.ttf */,
+				6736E6F228928B870031E15D /* Poppins-MediumItalic.ttf */,
+			);
+			path = Poppins;
+			sourceTree = "<group>";
+		};
+		67A12B562893B40A00760409 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				6736E6C528927BB30031E15D /* ContentView.swift */,
+				6700C5212898010800969E3C /* HamburgerMenuView.swift */,
+				6700C51B2897F69700969E3C /* ReminderListView.swift */,
+				6700C51D2897F7C800969E3C /* ReminderRowView.swift */,
+				6700C52D2899292300969E3C /* ReminderDetailView.swift */,
+				6700C52F289929F000969E3C /* ReminderDetailRow.swift */,
+				6700C535289965DD00969E3C /* EditReminderView.swift */,
+				6736E6D828927CF50031E15D /* AddReminderView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		67A12B572893B42E00760409 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				6700C53F289A742600969E3C /* SwipeActions */,
+				6736E70F2892F6950031E15D /* GlobalVariables.swift */,
+				67474774289423AB005F62E4 /* NotificationManager.swift */,
+				6747477628942747005F62E4 /* InfoOverlayView.swift */,
+				67A12B592893B43E00760409 /* View */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		67A12B592893B43E00760409 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				6700C5192897F3DD00969E3C /* TopMainBarView.swift */,
+				6736E70D2892F5F60031E15D /* TopBackBarView.swift */,
+				6736E6DC289288ED0031E15D /* TextFieldRow.swift */,
+				6736E6DA289286D00031E15D /* CustomTextField.swift */,
+				6736E7112892FA4A0031E15D /* DoubleSwitchButton.swift */,
+				67A12B5A2893C05700760409 /* MainButtonView.swift */,
+				6700C51F289800BA00969E3C /* SideBarStackView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -89,6 +267,8 @@
 			dependencies = (
 			);
 			name = BillReminder;
+			packageProductDependencies = (
+			);
 			productName = BillReminder;
 			productReference = 6736E6C028927BB30031E15D /* BillReminder.app */;
 			productType = "com.apple.product-type.application";
@@ -117,6 +297,8 @@
 				Base,
 			);
 			mainGroup = 6736E6B728927BB30031E15D;
+			packageReferences = (
+			);
 			productRefGroup = 6736E6C128927BB30031E15D /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -131,7 +313,26 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6736E6F728928B870031E15D /* Poppins-Light.ttf in Resources */,
+				6736E70128928B870031E15D /* Poppins-Black.ttf in Resources */,
+				6736E6FF28928B870031E15D /* Poppins-LightItalic.ttf in Resources */,
+				6736E70228928B870031E15D /* Poppins-Thin.ttf in Resources */,
+				6736E6F328928B870031E15D /* Poppins-ExtraLight.ttf in Resources */,
+				6736E70328928B870031E15D /* Poppins-SemiBold.ttf in Resources */,
+				6736E70028928B870031E15D /* Poppins-Bold.ttf in Resources */,
+				6736E6F428928B870031E15D /* Poppins-ThinItalic.ttf in Resources */,
+				6736E6F528928B870031E15D /* Poppins-ExtraLightItalic.ttf in Resources */,
+				6736E6FC28928B870031E15D /* Poppins-BlackItalic.ttf in Resources */,
+				6736E6FA28928B870031E15D /* Poppins-ExtraBoldItalic.ttf in Resources */,
+				6736E6F628928B870031E15D /* Poppins-BoldItalic.ttf in Resources */,
+				6736E6F928928B870031E15D /* Poppins-SemiBoldItalic.ttf in Resources */,
+				6736E6FD28928B870031E15D /* OFL.txt in Resources */,
+				6736E6FE28928B870031E15D /* Poppins-Regular.ttf in Resources */,
+				6736E6FB28928B870031E15D /* Poppins-ExtraBold.ttf in Resources */,
+				6736E6F828928B870031E15D /* Poppins-Medium.ttf in Resources */,
 				6736E6CB28927BB40031E15D /* Preview Assets.xcassets in Resources */,
+				6736E70428928B870031E15D /* Poppins-Italic.ttf in Resources */,
+				6736E70528928B870031E15D /* Poppins-MediumItalic.ttf in Resources */,
 				6736E6C828927BB40031E15D /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -143,9 +344,30 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6700C548289A742600969E3C /* ValueChangedModifier.swift in Sources */,
 				6736E6CD28927BB40031E15D /* Persistence.swift in Sources */,
+				6700C547289A742600969E3C /* SwipeActionModifier.swift in Sources */,
+				6700C520289800BA00969E3C /* SideBarStackView.swift in Sources */,
+				6700C51C2897F69700969E3C /* ReminderListView.swift in Sources */,
+				6700C52E2899292300969E3C /* ReminderDetailView.swift in Sources */,
+				6700C545289A742600969E3C /* SwipeActions.swift in Sources */,
 				6736E6C628927BB30031E15D /* ContentView.swift in Sources */,
+				6736E6D928927CF50031E15D /* AddReminderView.swift in Sources */,
+				67A12B5B2893C05700760409 /* MainButtonView.swift in Sources */,
+				6736E70E2892F5F60031E15D /* TopBackBarView.swift in Sources */,
+				6700C51E2897F7C800969E3C /* ReminderRowView.swift in Sources */,
+				6700C5222898010800969E3C /* HamburgerMenuView.swift in Sources */,
+				6736E7102892F6950031E15D /* GlobalVariables.swift in Sources */,
+				67474775289423AB005F62E4 /* NotificationManager.swift in Sources */,
+				6700C546289A742600969E3C /* MeasureSizeModifier.swift in Sources */,
+				6700C530289929F000969E3C /* ReminderDetailRow.swift in Sources */,
+				6736E6DB289286D00031E15D /* CustomTextField.swift in Sources */,
+				6700C536289965DD00969E3C /* EditReminderView.swift in Sources */,
+				6747477728942747005F62E4 /* InfoOverlayView.swift in Sources */,
+				6700C51A2897F3DD00969E3C /* TopMainBarView.swift in Sources */,
 				6736E6D028927BB40031E15D /* BillReminder.xcdatamodeld in Sources */,
+				6736E6DD289288ED0031E15D /* TextFieldRow.swift in Sources */,
+				6736E7122892FA4A0031E15D /* DoubleSwitchButton.swift in Sources */,
 				6736E6C428927BB30031E15D /* BillReminderApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -278,6 +500,7 @@
 				DEVELOPMENT_TEAM = 52SG46DL66;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = BillReminder/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -307,6 +530,7 @@
 				DEVELOPMENT_TEAM = 52SG46DL66;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = BillReminder/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
