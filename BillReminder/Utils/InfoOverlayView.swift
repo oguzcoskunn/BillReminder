@@ -14,24 +14,31 @@ struct InfoOverlayView: View {
     let action: () -> Void
     
     var body: some View {
-        HStack() {
-            Text(infoMessage)
-                .foregroundColor(Color("TextColor"))
-                .font(Font.custom("Poppins-Medium", size: 15))
-                .multilineTextAlignment(.leading)
-            Spacer()
-            Button {
-                action()
-            } label: {
-                Label(buttonTitle, systemImage: systemImageName)
-                    .foregroundColor(Color("TextfieldBackgroundColor"))
+        VStack(spacing: 0) {
+            Divider()
+            
+            HStack() {
+                Text(infoMessage)
+                    .foregroundColor(Color("TextColor"))
                     .font(Font.custom("Poppins-Medium", size: 15))
+                    .multilineTextAlignment(.leading)
+                Spacer()
+                Button {
+                    action()
+                } label: {
+                    Label(buttonTitle, systemImage: systemImageName)
+                        .foregroundColor(Color("TextfieldBackgroundColor"))
+                        .font(Font.custom("Poppins-Medium", size: 15))
+                }
+                .padding(.vertical, 6)
+                .padding(.horizontal, 10)
+                .background(Color("PlaceholderColor"))
+                .cornerRadius(8)
             }
-            .padding(.vertical, 6)
-            .padding(.horizontal, 10)
-            .background(Color("PlaceholderColor"))
-            .cornerRadius(8)
+            .padding(.vertical, 15)
+            
+            Divider()
+                .padding(.bottom, 25)
         }
-        .padding()
     }
 }
