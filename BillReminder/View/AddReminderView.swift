@@ -11,6 +11,7 @@ struct AddReminderView: View {
     @EnvironmentObject var globalVeriables: GlobalVariables
     @Environment(\.managedObjectContext) private var viewContext
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @ObservedObject var keyboardHandler = KeyboardHandler()
     @ObservedObject var notificationManager: NotificationManager
     @State private var reminderTitle: String = ""
     @State private var reminderInfo: String = ""
@@ -29,43 +30,102 @@ struct AddReminderView: View {
             TopBackBarView(titleText: Text("Create Reminder"))
             
             ScrollView {
-                VStack(spacing: 0) {
-                    VStack(alignment: .leading, spacing: 24) {
-                        TextFieldRow(title: Text("Billing Name"), placeholder: Text("Billing Name"), text: self.$reminderTitle)
-                        
-                        TextFieldRow(
-                            title: Text("Payment Information") +
-                            Text(" (optional)")
-                                .font(Font.custom("Poppins-Medium", size: 14))
-                                .foregroundColor(Color("PlaceholderColor"))
-                            , placeholder: Text("Payment Information"), text: self.$reminderInfo)
-                        
-                        HStack {
-                            Text("Payment Frequency")
-                                .font(Font.custom("Poppins-Medium", size: 14))
-                                .foregroundColor(Color("TextColor"))
-                            Spacer()
-                            DoubleSwitchButton(selectedButton: self.$selectedFrequency, firstButtonText: Text("Monthly"), secondButtonText: Text("Weekly"), textSize: 13, buttonHeight: 28, viewWidth: 180, viewHeight: 32, radius: 6.93, selectedButtonColor: Color("SelectedButtonColor"), backgroundColor: Color("TextfieldBackgroundColor"))
+                ZStack {
+                    Color.black
+                        .onTapGesture {
+                            hideKeyboard()
                         }
-                        
-                        VStack(spacing: 10) {
-                            Button {
-                                withAnimation(.spring()) {
-                                    self.showDatePicker.toggle()
+                    
+                    VStack(spacing: 0) {
+                        VStack(alignment: .leading, spacing: 24) {
+                            TextFieldRow(title: Text("Billing Name"), placeholder: Text("Billing Name"), text: self.$reminderTitle)
+                            
+                            TextFieldRow(
+                                title: Text("Payment Information") +
+                                Text(" (optional)")
+                                    .font(Font.custom("Poppins-Medium", size: 14))
+                                    .foregroundColor(Color("PlaceholderColor"))
+                                , placeholder: Text("Payment Information"), text: self.$reminderInfo)
+                            
+                            HStack {
+                                Text("Payment Frequency")
+                                    .font(Font.custom("Poppins-Medium", size: 14))
+                                    .foregroundColor(Color("TextColor"))
+                                Spacer()
+                                DoubleSwitchButton(selectedButton: self.$selectedFrequency, firstButtonText: Text("Monthly"), secondButtonText: Text("Weekly"), textSize: 13, buttonHeight: 28, viewWidth: 180, viewHeight: 32, radius: 6.93, selectedButtonColor: Color("SelectedButtonColor"), backgroundColor: Color("TextfieldBackgroundColor"))
+                            }
+                            
+                            VStack(spacing: 10) {
+                                Button {
+                                    hideKeyboard()
+                                    withAnimation(.spring()) {
+                                        self.showDatePicker.toggle()
+                                    }
+                                    
+                                } label: {
+                                    HStack {
+                                        Text("Next Payment Day")
+                                            .font(Font.custom("Poppins-Medium", size: 14))
+                                            .foregroundColor(Color("TextColor"))
+                                        Spacer()
+                                        if selectedDateString.isEmpty {
+                                            Image("CalendarIcon")
+                                        } else {
+                                            HStack(spacing: 12) {
+                                                //                                            Text(self.selectedFrequency == 0 ? selectedDateString(selectedDate: self.selectedDate) : days[self.selectedDay-1])
+                                                Text(self.selectedDateString)
+                                                    .font(Font.custom("Poppins-Regular", size: 14))
+                                                    .foregroundColor(Color("TextColor"))
+                                                
+                                                Image("RightArrowIcon")
+                                            }
+                                        }
+                                    }
                                 }
                                 
-                            } label: {
-                                HStack {
-                                    Text("Next Payment Day")
-                                        .font(Font.custom("Poppins-Medium", size: 14))
-                                        .foregroundColor(Color("TextColor"))
-                                    Spacer()
-                                    if selectedDateString.isEmpty {
-                                        Image("CalendarIcon")
+                                
+                                if self.showDatePicker {
+                                    if self.selectedFrequency == 0 {
+                                        DatePicker("", selection: self.$selectedDate, in: Date()..., displayedComponents: .date)
+                                            .colorScheme(.dark)
+                                            .datePickerStyle(GraphicalDatePickerStyle())
+                                            .labelsHidden()
+                                            .padding(.horizontal, 16)
+                                            .background(Color("TextfieldBackgroundColor"))
+                                            .cornerRadius(8)
                                     } else {
+                                        Picker("", selection: $selectedDay) {
+                                            ForEach((1...6), id: \.self) {
+                                                Text(days[$0])
+                                                    .tag($0 + 1)
+                                            }
+                                            Text("Sunday")
+                                                .tag(1)
+                                        }
+                                        .pickerStyle(WheelPickerStyle())
+                                        .colorScheme(.dark)
+                                        .background(Color("TextfieldBackgroundColor"))
+                                        .cornerRadius(8)
+                                    }
+                                }
+                            }
+                            
+                            VStack(spacing: 10) {
+                                Button {
+                                    hideKeyboard()
+                                    withAnimation(.spring()) {
+                                        self.showDaysPicker.toggle()
+                                    }
+                                } label: {
+                                    HStack {
+                                        Text("Remind me this early")
+                                            .font(Font.custom("Poppins-Medium", size: 14))
+                                            .foregroundColor(Color("TextColor"))
+                                        
+                                        Spacer()
+                                        
                                         HStack(spacing: 12) {
-                                            //                                            Text(self.selectedFrequency == 0 ? selectedDateString(selectedDate: self.selectedDate) : days[self.selectedDay-1])
-                                            Text(self.selectedDateString)
+                                            Text(self.selectedDays > 0 ? self.selectedDays > 1 ? "\(self.selectedDays) days earlier" : "\(self.selectedDays) day earlier" : "Exactly the day")
                                                 .font(Font.custom("Poppins-Regular", size: 14))
                                                 .foregroundColor(Color("TextColor"))
                                             
@@ -73,130 +133,88 @@ struct AddReminderView: View {
                                         }
                                     }
                                 }
-                            }
-                            
-                            
-                            if self.showDatePicker {
-                                if self.selectedFrequency == 0 {
-                                    DatePicker("", selection: self.$selectedDate, in: Date()..., displayedComponents: .date)
-                                        .colorScheme(.dark)
-                                        .datePickerStyle(GraphicalDatePickerStyle())
-                                        .labelsHidden()
-                                        .padding(.horizontal, 16)
-                                        .background(Color("TextfieldBackgroundColor"))
-                                        .cornerRadius(8)
-                                } else {
-                                    Picker("", selection: $selectedDay) {
-                                        ForEach((1...6), id: \.self) {
-                                            Text(days[$0])
-                                                .tag($0 + 1)
+                                
+                                if self.showDaysPicker {
+                                    Picker("", selection: $selectedDays) {
+                                        Text("Exactly the day")
+                                            .tag(0)
+                                        
+                                        ForEach(self.selectedFrequency == 0 ? (1...30) : (1...7), id: \.self) {
+                                            Text("\($0) ") + Text($0 > 1 ? "days earlier" : "day earlier")
                                         }
-                                        Text("Sunday")
-                                            .tag(1)
                                     }
                                     .pickerStyle(WheelPickerStyle())
                                     .colorScheme(.dark)
                                     .background(Color("TextfieldBackgroundColor"))
                                     .cornerRadius(8)
                                 }
+                                
                             }
                         }
+                        .padding(.horizontal, 26)
                         
-                        VStack(spacing: 10) {
-                            Button {
-                                withAnimation(.spring()) {
-                                    self.showDaysPicker.toggle()
-                                }
-                            } label: {
-                                HStack {
-                                    Text("Remind me this early")
-                                        .font(Font.custom("Poppins-Medium", size: 14))
-                                        .foregroundColor(Color("TextColor"))
-                                    
-                                    Spacer()
-                                    
-                                    HStack(spacing: 12) {
-                                        Text(self.selectedDays > 0 ? self.selectedDays > 1 ? "\(self.selectedDays) days earlier" : "\(self.selectedDays) day earlier" : "Exactly the day")
-                                            .font(Font.custom("Poppins-Regular", size: 14))
-                                            .foregroundColor(Color("TextColor"))
-                                        
-                                        Image("RightArrowIcon")
-                                    }
-                                }
+                        Button {
+                            if self.selectedFrequency == 0 {
+                                addReminderMonthly(billingName: self.reminderTitle, billingInfo: self.reminderInfo, paymentFrequency: self.selectedFrequency, reminderDate: self.selectedDate, remindMeThisEarly: self.selectedDays)
+                                self.presentationMode.wrappedValue.dismiss()
+                            } else {
+                                addReminderWeekly(billingName: self.reminderTitle, billingInfo: self.reminderInfo, paymentFrequency: self.selectedFrequency, reminderDay: self.selectedDay, remindMeThisEarly: self.selectedDays)
                             }
                             
-                            if self.showDaysPicker {
-                                Picker("", selection: $selectedDays) {
-                                    Text("Exactly the day")
-                                        .tag(0)
-                                    
-                                    ForEach(self.selectedFrequency == 0 ? (1...30) : (1...7), id: \.self) {
-                                        Text("\($0) ") + Text($0 > 1 ? "days earlier" : "day earlier")
-                                    }
-                                }
-                                .pickerStyle(WheelPickerStyle())
-                                .colorScheme(.dark)
-                                .background(Color("TextfieldBackgroundColor"))
-                                .cornerRadius(8)
-                            }
-                            
+                        } label: {
+                            MainButtonView(buttonText: Text("Create Reminder"))
                         }
+                        .padding(.top, 40)
+                        .padding(.bottom, globalVeriables.bottomSafeSpace + 10)
                     }
-                    .padding(.horizontal, 26)
-                    
-                    Button {
-                        if self.selectedFrequency == 0 {
-                            addReminderMonthly(billingName: self.reminderTitle, billingInfo: self.reminderInfo, paymentFrequency: self.selectedFrequency, reminderDate: self.selectedDate, remindMeThisEarly: self.selectedDays)
-                            self.presentationMode.wrappedValue.dismiss()
+                    .padding(.top, 28)
+                    .onChange(of: self.selectedDate.description, perform: { newValue in
+                        if !self.dontChange {
+                            self.selectedDateString = selectedDateString(reminderDate: self.selectedDate)
                         } else {
-                            addReminderWeekly(billingName: self.reminderTitle, billingInfo: self.reminderInfo, paymentFrequency: self.selectedFrequency, reminderDay: self.selectedDay, remindMeThisEarly: self.selectedDays)
+                            self.dontChange = false
                         }
-                        
-                    } label: {
-                        MainButtonView(buttonText: Text("Create Reminder"))
-                    }
-                    .padding(.top, 40)
-                    .padding(.bottom, globalVeriables.bottomSafeSpace + 10)
-                }
-                .padding(.top, 28)
-                .onChange(of: self.selectedDate.description, perform: { newValue in
-                    if !self.dontChange {
-                        self.selectedDateString = selectedDateString(reminderDate: self.selectedDate)
-                    } else {
-                        self.dontChange = false
-                    }
-                })
-                .onChange(of: self.selectedDay, perform: { newValue in
-                    if !self.dontChange {
-                        self.selectedDateString = days[newValue-1]
-                        
-                    } else {
-                        self.dontChange = false
-                    }
-                })
-                .onChange(of: self.selectedFrequency) { newValue in
-                    if newValue == 0 {
-                        if self.selectedDate.description != Date().description {
-                            self.dontChange = true
-                            self.selectedDate = Date()
+                    })
+                    .onChange(of: self.selectedDay, perform: { newValue in
+                        if !self.dontChange {
+                            self.selectedDateString = days[newValue-1]
+                            
+                        } else {
+                            self.dontChange = false
                         }
-                        
-                    } else {
-                        if self.selectedDay != Date().dayNumberOfWeek()! {
-                            self.dontChange = true
-                            self.selectedDay = Date().dayNumberOfWeek()!
+                    })
+                    .onChange(of: self.selectedFrequency) { newValue in
+                        if newValue == 0 {
+                            if self.selectedDate.description != Date().description {
+                                self.dontChange = true
+                                self.selectedDate = Date()
+                            }
+                            
+                        } else {
+                            if self.selectedDay != Date().dayNumberOfWeek()! {
+                                self.dontChange = true
+                                self.selectedDay = Date().dayNumberOfWeek()!
+                            }
                         }
+                        self.showDaysPicker = false
+                        self.showDatePicker = false
+                        self.selectedDays = 0
+                        self.selectedDateString = ""
                     }
-                    self.showDaysPicker = false
-                    self.showDatePicker = false
-                    self.selectedDays = 0
-                    self.selectedDateString = ""
                 }
             }
         }
+        .padding(.bottom, self.keyboardHandler.keyboardHeight)
         .navigationBarHidden(true)
         .edgesIgnoringSafeArea(.all)
         .background(Color.black)
+        .gesture(
+            DragGesture()
+                .onChanged {
+                    if $0.location.x - $0.startLocation.x > 150 {
+                        self.presentationMode.wrappedValue.dismiss()
+                    }
+                })
     }
     
     private func selectedDateString(reminderDate: Date) -> String {
@@ -227,13 +245,13 @@ struct AddReminderView: View {
         var specifyDateComponents = DateComponents()
         specifyDateComponents.year = Int(Date.now.formatted(as: "yyyy"))
         specifyDateComponents.timeZone = TimeZone.current
-        specifyDateComponents.hour = 12
+        specifyDateComponents.hour = 7
         specifyDateComponents.minute = 0
         specifyDateComponents.month = 1
         
         var reminderDateComponents = DateComponents()
         reminderDateComponents.calendar = Calendar.current
-        reminderDateComponents.hour = 12
+        reminderDateComponents.hour = 7
         reminderDateComponents.minute = 0
         
         let userCalendar = Calendar.current
@@ -298,7 +316,7 @@ struct AddReminderView: View {
         
         var reminderDateComponents = DateComponents()
         reminderDateComponents.calendar = Calendar.current
-        reminderDateComponents.hour = 12
+        reminderDateComponents.hour = 7
         reminderDateComponents.minute = 0
         
         
@@ -310,7 +328,7 @@ struct AddReminderView: View {
             var specifyDateComponents = DateComponents()
             specifyDateComponents.year = Int(lastDate.formatted(as: "yyyy"))
             specifyDateComponents.timeZone = TimeZone.current
-            specifyDateComponents.hour = 12
+            specifyDateComponents.hour = 7
             specifyDateComponents.minute = 0
             specifyDateComponents.month = month
             var someDateTime = userCalendar.date(from: specifyDateComponents)

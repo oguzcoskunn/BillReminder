@@ -25,6 +25,7 @@ struct DoubleSwitchButton: View {
             
             HStack(spacing: 4) {
                 Button {
+                    hideKeyboard()
                     self.selectedButton = 0
                 } label: {
                     ZStack {
@@ -41,6 +42,7 @@ struct DoubleSwitchButton: View {
                 .buttonStyle(FlatLinkStyle())
                 
                 Button {
+                    hideKeyboard()
                     self.selectedButton = 1
                 } label: {
                     ZStack {

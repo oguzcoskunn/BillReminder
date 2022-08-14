@@ -23,28 +23,51 @@ struct ReminderRowView: View {
                 Color("TextfieldBackgroundColor")
                 
                 VStack(alignment: .leading, spacing: 0) {
-                    HStack {
-                        Text(reminderTitle)
-                            .multilineTextAlignment(.leading)
-                            .foregroundColor(Color("TextColor"))
-                            .font(Font.custom("Poppins-Medium", size: 14))
-                        Spacer()
-                        Text(self.dayDiff == 0 ? "Today" : self.dayDiff > 1 ? "\(dayDiff) days" : "\(dayDiff) day")
-                            .fixedSize()
-                            .foregroundColor(self.dayDiff <= 7 ? Color(#colorLiteral(red: 0.93, green: 0.84, blue: 0.28, alpha: 1)) : Color(#colorLiteral(red: 0.5, green: 0.89, blue: 0.62, alpha: 1)))
-                            .font(Font.custom("Poppins-Regular", size: 14))
-                    }
-                    
-                    HStack {
-                        Text(reminderInfo)
-                            .multilineTextAlignment(.leading)
-                            .foregroundColor(Color(#colorLiteral(red: 0.62, green: 0.62, blue: 0.62, alpha: 1)))
-                            .font(Font.custom("Poppins-Regular", size: 12))
-                        Spacer()
-                        Text(self.reminderDate.formatted(as: "dd.MM.yyyy"))
-                            .fixedSize()
-                            .foregroundColor(Color("TextColor"))
-                            .font(Font.custom("Poppins-Regular", size: 12))
+                    if reminderInfo.isEmpty {
+                        HStack(alignment: .center) {
+                            Text(reminderTitle)
+                                .multilineTextAlignment(.leading)
+                                .foregroundColor(Color("TextColor"))
+                                .font(Font.custom("Poppins-Medium", size: 14))
+                            
+                            Spacer()
+                            
+                            VStack(alignment: .trailing ,spacing: 0) {
+                                Text(self.dayDiff == 0 ? "Today" : self.dayDiff > 1 ? "\(dayDiff) days" : "\(dayDiff) day")
+                                    .fixedSize()
+                                    .foregroundColor(self.dayDiff <= 7 ? Color(#colorLiteral(red: 0.93, green: 0.84, blue: 0.28, alpha: 1)) : Color(#colorLiteral(red: 0.5, green: 0.89, blue: 0.62, alpha: 1)))
+                                    .font(Font.custom("Poppins-Regular", size: 14))
+                                
+                                Text(self.reminderDate.formatted(as: "dd.MM.yyyy"))
+                                    .fixedSize()
+                                    .foregroundColor(Color("TextColor"))
+                                    .font(Font.custom("Poppins-Regular", size: 12))
+                            }
+                        }
+                    } else {
+                        HStack {
+                            Text(reminderTitle)
+                                .multilineTextAlignment(.leading)
+                                .foregroundColor(Color("TextColor"))
+                                .font(Font.custom("Poppins-Medium", size: 14))
+                            Spacer()
+                            Text(self.dayDiff == 0 ? "Today" : self.dayDiff > 1 ? "\(dayDiff) days" : "\(dayDiff) day")
+                                .fixedSize()
+                                .foregroundColor(self.dayDiff <= 7 ? Color(#colorLiteral(red: 0.93, green: 0.84, blue: 0.28, alpha: 1)) : Color(#colorLiteral(red: 0.5, green: 0.89, blue: 0.62, alpha: 1)))
+                                .font(Font.custom("Poppins-Regular", size: 14))
+                        }
+                        
+                        HStack {
+                            Text(reminderInfo)
+                                .multilineTextAlignment(.leading)
+                                .foregroundColor(Color(#colorLiteral(red: 0.62, green: 0.62, blue: 0.62, alpha: 1)))
+                                .font(Font.custom("Poppins-Regular", size: 12))
+                            Spacer()
+                            Text(self.reminderDate.formatted(as: "dd.MM.yyyy"))
+                                .fixedSize()
+                                .foregroundColor(Color("TextColor"))
+                                .font(Font.custom("Poppins-Regular", size: 12))
+                        }
                     }
                 }
                 .padding(.horizontal, 16)

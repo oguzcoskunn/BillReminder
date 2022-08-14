@@ -11,12 +11,15 @@ struct ContentView: View {
     @EnvironmentObject var globalVeriables: GlobalVariables
     @State private var showSideBar: Bool = false
     @State private var addNewReminder: Bool = false
+    @State private var isShowingMailView: Bool = false
     
     var body: some View {
         SideBarStackView(sidebarWidth: 222, showSidebar: $showSideBar) {
-            HamburgerMenuView(showSideBar: self.$showSideBar, addNewReminder: self.$addNewReminder)
+            HamburgerMenuView(showSideBar: self.$showSideBar, addNewReminder: self.$addNewReminder, isShowingMailView: self.$isShowingMailView)
         } content: {
-            RemindersListView(showSideBar: self.$showSideBar, addNewReminder: self.$addNewReminder)
+            RemindersListView(showSideBar: self.$showSideBar, addNewReminder: self.$addNewReminder, isShowingMailView: self.$isShowingMailView)
+            
+                .phoneOnlyStackNavigationView()
         }
         .overlay(
             GeometryReader { geo in

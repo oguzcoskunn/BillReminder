@@ -6,10 +6,12 @@
 //
 
 import SwiftUI
+import MessageUI
 
 struct HamburgerMenuView: View {
     @Binding var showSideBar: Bool
     @Binding var addNewReminder: Bool
+    @Binding var isShowingMailView: Bool
     
     var body: some View {
         ZStack(alignment: .topLeading) {
@@ -32,18 +34,36 @@ struct HamburgerMenuView: View {
                     
                     Divider()
                     
-                    HStack(spacing: 10) {
-                        Image("QuestionmarkIcon")
-                        
-                        Text("Contact Us")
+                    Button {
+                        if MFMailComposeViewController.canSendMail() {
+                            self.showSideBar = false
+                            self.isShowingMailView = true
+                        } else {
+                            print("You cant send mail from this device")
+                        }
+                    } label: {
+                        HStack(spacing: 10) {
+                            Image("QuestionmarkIcon")
+                            
+                            Text("Contact Us")
+                        }
                     }
                     
                     Divider()
                     
-                    HStack(spacing: 10) {
-                        Image("MailIcon")
-                        
-                        Text("Suggest us anything")
+                    Button {
+                        if MFMailComposeViewController.canSendMail() {
+                            self.showSideBar = false
+                            self.isShowingMailView = true
+                        } else {
+                            print("You cant send mail from this device")
+                        }
+                    } label: {
+                        HStack(spacing: 10) {
+                            Image("MailIcon")
+                            
+                            Text("Suggest us anything")
+                        }
                     }
                 }
                 .foregroundColor(Color("TextColor"))

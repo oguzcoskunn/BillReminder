@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import MessageUI
 
 struct ReminderInfo {
     var billingName: String
@@ -28,11 +29,13 @@ struct RemindersListView: View {
     @StateObject private var notificationManager = NotificationManager()
     @Binding var showSideBar: Bool
     @Binding var addNewReminder: Bool
+    @Binding var isShowingMailView: Bool
     @State private var next7DaysCount: Int = 0
     @State private var next30DaysCount: Int = 0
     @State private var alreadyShowed: [String] = []
     @State private var showReminderDetail: Bool = false
     @State var currentReminderInfo = ReminderInfo(billingName: "none", paymentInformation: "none", paymentFrequency: 0, paymentDay: 1, remindMeThisEarly: 0, selectedDate: Date(), selectedDateString: "", reminderUid: "none")
+    @State var result: Result<MFMailComposeResult, Error>? = nil
     
     @ViewBuilder
     var infoOverlayView: some View {
@@ -222,6 +225,9 @@ struct RemindersListView: View {
             .navigationBarHidden(true)
             .edgesIgnoringSafeArea(.all)
             .background(Color.black)
+                    .sheet(isPresented: $isShowingMailView) {
+                        MailView(isShowing: self.$isShowingMailView, result: self.$result)
+                    }
         }
         .onAppear(perform: notificationManager.reloadAuthorizationStatus)
         .onChange(of: notificationManager.authorizationStatus) { authorizationStatus in
