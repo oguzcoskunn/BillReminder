@@ -13,7 +13,7 @@ struct EditReminderView: View {
         sortDescriptors: [NSSortDescriptor(keyPath: \Reminder.timestamp, ascending: true)],
         animation: .default)
     private var reminders: FetchedResults<Reminder>
-    
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @EnvironmentObject var globalVeriables: GlobalVariables
     @Environment(\.managedObjectContext) private var viewContext
     @ObservedObject var keyboardHandler = KeyboardHandler()
@@ -226,13 +226,9 @@ struct EditReminderView: View {
         .navigationBarHidden(true)
         .edgesIgnoringSafeArea(.all)
         .background(Color.black)
-        .gesture(
-            DragGesture()
-                .onChanged {
-                    if $0.location.x - $0.startLocation.x > 150 {
-                        self.showReminderDetail = false
-                    }
-                })
+        .onBackSwipe {
+            self.presentationMode.wrappedValue.dismiss()
+        }
     }
     
     private func selectedDateString(reminderDate: Date) -> String {

@@ -70,7 +70,7 @@ struct RemindersListView: View {
                             .foregroundColor(Color("TextColor"))
                             .font(Font.custom("Poppins-Medium", size: 18))
                         
-                       List {
+                        VStack(spacing: 8) {
                             ForEach(reminders) { reminder in
                                 let dayDiff = getDayDiffFromNow(dateTo: reminder.timestamp!)
                                 if dayDiff >= 0 && dayDiff < 7 && reminder.isActive {
@@ -80,51 +80,32 @@ struct RemindersListView: View {
                                             self.currentReminderInfo = ReminderInfo(billingName: reminder.title!, paymentInformation: reminder.info!, paymentFrequency: Int(reminder.frequency), paymentDay: Int(reminder.paymentDay), remindMeThisEarly: Int(reminder.reminMeThisEarly), selectedDate: reminder.selectedDate!, selectedDateString: reminder.selectedDateString!, reminderUid: reminder.reminderUid!)
                                             self.showReminderDetail = true
                                         }
-                                        .swipeActions {
-                                            Button {
-                                                setAsPaid(reminder: reminder)
-                                            } label: {
-                                                Text("This is paid")
-                                                    .font(Font.custom("Poppins-Medium", size: 14))
-                                                    .foregroundColor(Color.black)
+                                        .addSwipeAction {
+                                            Leading {}
+                                            Trailing {
+                                                Button {
+                                                    setAsPaid(reminder: reminder)
+                                                } label: {
+                                                    Text("This is paid")
+                                                        .padding(.leading, 10)
+                                                        .font(Font.custom("Poppins-Medium", size: 14))
+                                                        .foregroundColor(Color.black)
+                                                }
+                                                .frame(width: 130, height: 67, alignment: .center)
+                                                .contentShape(Rectangle())
+                                                .background(LinearGradient(
+                                                    gradient: Gradient(stops: [
+                                                .init(color: Color(#colorLiteral(red: 0.9115333557128906, green: 0.9333333373069763, blue: 0.27843135595321655, alpha: 1)), location: 0),
+                                                .init(color: Color(#colorLiteral(red: 0.49803921580314636, green: 0.8941176533699036, blue: 0.6235294342041016, alpha: 1)), location: 1),
+                                                .init(color: Color(#colorLiteral(red: 0.8583333492279053, green: 0.8583333492279053, blue: 0.8583333492279053, alpha: 0)), location: 1)]),
+                                                    startPoint: UnitPoint(x: -0.45161292583606094, y: 2.166666708059898),
+                                                    endPoint: UnitPoint(x: 1.9569892785121463, y: -0.5476190761567405)))
+                                                .cornerRadius(8, corners: [.topRight, .bottomRight])
                                             }
-                                            .tint(Color.green)
                                         }
-                                        
-//                                        .addSwipeAction {
-//                                            Leading {}
-//                                            Trailing {
-//                                                Button {
-//                                                    setAsPaid(reminder: reminder)
-//                                                } label: {
-//                                                    Text("This is paid")
-//                                                        .padding(.leading, 10)
-//                                                        .font(Font.custom("Poppins-Medium", size: 14))
-//                                                        .foregroundColor(Color.black)
-//                                                }
-//                                                .frame(width: 130, height: 67, alignment: .center)
-//                                                .contentShape(Rectangle())
-//                                                .background(LinearGradient(
-//                                                    gradient: Gradient(stops: [
-//                                                .init(color: Color(#colorLiteral(red: 0.9115333557128906, green: 0.9333333373069763, blue: 0.27843135595321655, alpha: 1)), location: 0),
-//                                                .init(color: Color(#colorLiteral(red: 0.49803921580314636, green: 0.8941176533699036, blue: 0.6235294342041016, alpha: 1)), location: 1),
-//                                                .init(color: Color(#colorLiteral(red: 0.8583333492279053, green: 0.8583333492279053, blue: 0.8583333492279053, alpha: 0)), location: 1)]),
-//                                                    startPoint: UnitPoint(x: -0.45161292583606094, y: 2.166666708059898),
-//                                                    endPoint: UnitPoint(x: 1.9569892785121463, y: -0.5476190761567405)))
-//                                                .cornerRadius(8, corners: [.topRight, .bottomRight])
-//                                                .padding(.bottom, 8)
-//                                            }
-//                                        }
                                 }
                             }
-                            .listRowBackground(Color.clear)
-                            .listRowSeparator(.hidden)
-//                            .listRowInsets(EdgeInsets())
-                            .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 8, trailing: 0))
                         }
-                       
-                       .listStyle(PlainListStyle())
-                       .frame(height: CGFloat(self.next7DaysCount * 75))
                         .padding(.top, 10)
                        
                         Text("In next 30 days")
@@ -132,34 +113,41 @@ struct RemindersListView: View {
                             .font(Font.custom("Poppins-Medium", size: 18))
                             .padding(.top, 15)
                         
-                        List {
+                        VStack(spacing: 8) {
                              ForEach(reminders) { reminder in
                                  let dayDiff = getDayDiffFromNow(dateTo: reminder.timestamp!)
                                  if dayDiff > 7 && dayDiff < 30 && reminder.isActive && !isAlreadyShowed(reminderUid: reminder.reminderUid!) && !isAlreadyShowed(reminderUid: reminder.uid!.uuidString) {
                                      ReminderRowView(dayDiff: dayDiff, reminderTitle: reminder.title!, reminderInfo: reminder.info!, reminderDate: reminder.timestamp!)
-                                         .padding(.bottom, 8)
                                          .onTapGesture {
                                              self.currentReminderInfo = ReminderInfo(billingName: reminder.title!, paymentInformation: reminder.info!, paymentFrequency: Int(reminder.frequency), paymentDay: Int(reminder.paymentDay), remindMeThisEarly: Int(reminder.reminMeThisEarly), selectedDate: reminder.selectedDate!, selectedDateString: reminder.selectedDateString!, reminderUid: reminder.reminderUid!)
                                              self.showReminderDetail = true
                                          }
-                                         .swipeActions {
-                                             Button {
-                                                 setAsPaid(reminder: reminder)
-                                             } label: {
-                                                 Text("This is paid")
-                                                     .font(Font.custom("Poppins-Medium", size: 14))
-                                                     .foregroundColor(Color.black)
+                                         .addSwipeAction {
+                                             Leading {}
+                                             Trailing {
+                                                 Button {
+                                                     setAsPaid(reminder: reminder)
+                                                 } label: {
+                                                     Text("This is paid")
+                                                         .padding(.leading, 10)
+                                                         .font(Font.custom("Poppins-Medium", size: 14))
+                                                         .foregroundColor(Color.black)
+                                                 }
+                                                 .frame(width: 130, height: 67, alignment: .center)
+                                                 .contentShape(Rectangle())
+                                                 .background(LinearGradient(
+                                                     gradient: Gradient(stops: [
+                                                 .init(color: Color(#colorLiteral(red: 0.9115333557128906, green: 0.9333333373069763, blue: 0.27843135595321655, alpha: 1)), location: 0),
+                                                 .init(color: Color(#colorLiteral(red: 0.49803921580314636, green: 0.8941176533699036, blue: 0.6235294342041016, alpha: 1)), location: 1),
+                                                 .init(color: Color(#colorLiteral(red: 0.8583333492279053, green: 0.8583333492279053, blue: 0.8583333492279053, alpha: 0)), location: 1)]),
+                                                     startPoint: UnitPoint(x: -0.45161292583606094, y: 2.166666708059898),
+                                                     endPoint: UnitPoint(x: 1.9569892785121463, y: -0.5476190761567405)))
+                                                 .cornerRadius(8, corners: [.topRight, .bottomRight])
                                              }
-                                             .tint(Color.green)
                                          }
                                  }
                              }
-                             .listRowBackground(Color.clear)
-                             .listRowSeparator(.hidden)
-                             .listRowInsets(EdgeInsets())
                          }
-                        .listStyle(PlainListStyle())
-                        .frame(height: CGFloat(self.next30DaysCount * 75))
                         .padding(.top, 10)
                     }
                     .padding(.bottom, globalVeriables.bottomSafeSpace + 10)

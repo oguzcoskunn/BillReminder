@@ -50,5 +50,8 @@ struct ReminderDetailView: View {
         .navigationBarHidden(true)
         .edgesIgnoringSafeArea(.all)
         .background(Color.black)
+        .onBackSwipe {
+            self.showReminderDetail = false
+        }
     }
 }

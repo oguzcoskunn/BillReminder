@@ -208,13 +208,9 @@ struct AddReminderView: View {
         .navigationBarHidden(true)
         .edgesIgnoringSafeArea(.all)
         .background(Color.black)
-        .gesture(
-            DragGesture()
-                .onChanged {
-                    if $0.location.x - $0.startLocation.x > 150 {
-                        self.presentationMode.wrappedValue.dismiss()
-                    }
-                })
+        .onBackSwipe {
+            self.presentationMode.wrappedValue.dismiss()
+        }
     }
     
     private func selectedDateString(reminderDate: Date) -> String {

@@ -52,11 +52,37 @@ struct FlatLinkStyle: ButtonStyle {
     }
 }
 
-
-//Radius for Specific Corners
 extension View {
+    //Radius for Specific Corners
     func cornerRadius(_ radius: CGFloat, corners: UIRectCorner) -> some View {
         clipShape( RoundedCorner(radius: radius, corners: corners) )
+    }
+    
+    //Hide keyboard
+    func hideKeyboard() {
+        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+    }
+    
+    //iPhone and iPad Optimization
+    func phoneOnlyStackNavigationView() ->some View{
+
+        if UIDevice.current.userInterfaceIdiom == .phone{
+            return AnyView(self)
+        }else{
+            return AnyView(self.navigationViewStyle(StackNavigationViewStyle()))
+        }
+    }
+    
+    //Back Swipe Gesture
+    func onBackSwipe(perform action: @escaping () -> Void) -> some View {
+        gesture(
+            DragGesture()
+                .onEnded({ value in
+                    if value.startLocation.x < 50 && value.translation.width > 80 {
+                        action()
+                    }
+                })
+        )
     }
 }
 
@@ -91,23 +117,4 @@ final class KeyboardHandler: ObservableObject {
             .assign(to: \.self.keyboardHeight, on: self)
     }
     
-}
-
-//Hide Keyboard Function
-extension View {
-    func hideKeyboard() {
-        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-    }
-}
-
-
-extension View{
-    func phoneOnlyStackNavigationView() ->some View{
-
-        if UIDevice.current.userInterfaceIdiom == .phone{
-            return AnyView(self)
-        }else{
-            return AnyView(self.navigationViewStyle(StackNavigationViewStyle()))
-        }
-    }
 }
